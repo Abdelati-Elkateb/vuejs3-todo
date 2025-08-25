@@ -14,7 +14,7 @@
     </thead>
 
     <tbody>
-            <ShowDate :items="filteredItems" />
+      <ShowDate :items="filteredItems" />
     </tbody>
   </table>
 
@@ -38,10 +38,7 @@ const filteredItems = computed(() => {
   if (selectedTab.value === 'active') return store.active
   if (selectedTab.value === 'completed') return store.completed
   return store.items
-
 })
-
-
 
 </script>
 

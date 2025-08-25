@@ -21,6 +21,7 @@ const addItem = () => {
     item.value = '' // Clear the input after adding
     console.log("Item added:", item.value)
     console.log("Current store items:", store.items)
+    store.activeItem()
 }
 
 </script>

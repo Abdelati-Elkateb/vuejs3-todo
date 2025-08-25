@@ -14,7 +14,8 @@ export const useTodoStore = defineStore('todoId', {
   getters: {
     getItems: (state) => state.items,
     isEmpty: (state) => state.items.length === 0,
-    totalIndex: (state) => state.items.length
+    totalIndex: (state) => state.items.length,
+    // getId:(state) => state.id  + 1
   },
 
   actions: {
@@ -24,18 +25,19 @@ export const useTodoStore = defineStore('todoId', {
       localStorage.setItem('todoItems', JSON.stringify(this.items))
     },
     activeItem(item) {
-      this.active.push(item)
-      console.log('active item:', item)
-      localStorage.setItem('activeItems', JSON.stringify(this.active))
-      console.log('active items:', this.active)
+      if (!this.completed.includes(item) && !this.active.includes(item)) {
+        this.active.push(item)
+        console.log("actives", item)
+        console.log("this active", this.active)
+      }
     },
 
     completedItem(item) {
       this.completed.push(item)
       localStorage.setItem('itemsCompleted', JSON.stringify(this.completed))
-      console.log('completed item')
+      console.log('completed', this.completed)
+      console.log('completed item', item)
     },
-
     removeTodoByIndex(index) {
       if (index > -1 && index < this.items.length) {
         this.items.splice(index, 1)
@@ -44,15 +46,12 @@ export const useTodoStore = defineStore('todoId', {
     },
     loadTodos() {
       const savedAddItem = localStorage.getItem('todoItems')
-      if (savedAddItem) {
-        this.items = JSON.parse(savedAddItem)
-      }
-      const savedCompleted = localStorage.getItem('itemsCompleted')
-      if (savedCompleted) {
-        this.Completed = JSON.parse(savedCompleted)
-      }
+      if (savedAddItem) this.items = JSON.parse(savedAddItem)
 
+      const savedCompleted = localStorage.getItem('itemsCompleted')
+      if (savedCompleted) this.completed = JSON.parse(savedCompleted) // تصحيح this.Completed
     },
+
     clearAllTodos() {
       this.items = []
       localStorage.removeItem('todoItems')

@@ -2,7 +2,7 @@
     <tr v-for="(item, index) in items" :key="item.id || index" class="border-b">
         <td class="px-6 py-4">
             <!-- check box -->
-              <v-checkbox v-model="model" :value="item" />
+            <v-checkbox v-model="store.completed" :value="item" />
         </td>
         <td class="px-6 py-4">
             {{ item }}
@@ -26,6 +26,7 @@ const props = defineProps({
 
 })
 
-const model = ref("")
+
+
 
 </script>
