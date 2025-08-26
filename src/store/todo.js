@@ -21,22 +21,30 @@ export const useTodoStore = defineStore('todoId', {
   actions: {
     addItem(item) {
       this.items.push(item)
+      this.active.push(item)
       console.log('list of item:', item)
       localStorage.setItem('todoItems', JSON.stringify(this.items))
     },
-    activeItem(item) {
-      if (!this.completed.includes(item) && !this.active.includes(item)) {
-        this.active.push(item)
-        console.log("actives", item)
-        console.log("this active", this.active)
-      }
-    },
+    toggleState(item) {
+      if (this.completed.includes(item)) {
+        // لو ايتم موحودة في كومليتد هذا فهمته 
 
-    completedItem(item) {
-      this.completed.push(item)
-      localStorage.setItem('itemsCompleted', JSON.stringify(this.completed))
-      console.log('completed', this.completed)
-      console.log('completed item', item)
+
+        
+        this.completed = this.completed.filter(el => el !== item)
+        //  مامعني هذا 
+        if (!this.active.includes(item)) {
+          // لو هذا مش موجود في اكتف
+          this.active.push(item)
+          // ضيف ايتم علي اكتف
+        }
+      } else {
+        this.completed.push(item)
+        this.active = this.active.filter(el => el !== item)
+      }
+      console.log('Before:', this.active, this.completed)
+      console.log('After:', this.active, this.completed)
+
     },
     removeTodoByIndex(index) {
       if (index > -1 && index < this.items.length) {

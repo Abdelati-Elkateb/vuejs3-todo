@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <th class="d-flex align-center">
-          <v-checkbox class="ml-5" v-model="itemCompleted" hide-details density="compact" />
+          <v-checkbox class="ml-5" hide-details density="compact" />
           <span class="mr-5"> {{ store.totalIndex }} items left</span>
         </th>
 
@@ -14,7 +14,7 @@
     </thead>
 
     <tbody>
-      <ShowDate :items="filteredItems" />
+      <ShowTable :items="filteredItems" />
     </tbody>
   </table>
 
@@ -26,7 +26,7 @@
 <script setup>
 import { useTodoStore } from '../store/todo.js'
 import { ref, onMounted, computed } from 'vue'
-import ShowDate from '../components/ShowDate.vue'
+import ShowTable  from '../components/ShowDate.vue'
 
 const store = useTodoStore()
 store.loadTodos()
