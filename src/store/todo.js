@@ -27,24 +27,16 @@ export const useTodoStore = defineStore('todoId', {
     },
     toggleState(item) {
       if (this.completed.includes(item)) {
-        // لو ايتم موحودة في كومليتد هذا فهمته 
 
-
-        
         this.completed = this.completed.filter(el => el !== item)
-        //  مامعني هذا 
+
         if (!this.active.includes(item)) {
-          // لو هذا مش موجود في اكتف
           this.active.push(item)
-          // ضيف ايتم علي اكتف
         }
       } else {
         this.completed.push(item)
         this.active = this.active.filter(el => el !== item)
       }
-      console.log('Before:', this.active, this.completed)
-      console.log('After:', this.active, this.completed)
-
     },
     removeTodoByIndex(index) {
       if (index > -1 && index < this.items.length) {

@@ -1,6 +1,12 @@
 <template>
-    <v-text-field @keyup.enter="addItem" class="text-field" v-model="item" border="error xl"
-        label="what needs to be done?" variant="outlined"></v-text-field>
+    <v-text-field  @keyup.enter="addItem" 
+    bg-color="white"
+     class="text-field mb-1 border-none"
+     v-model="item"
+    label="what needs to be done?" variant="solo">
+    </v-text-field>
+
+
 </template>
 
 <script setup>
@@ -19,9 +25,6 @@ const item = ref('')
 const addItem = () => {
     store.addItem(item.value)
     item.value = '' // Clear the input after adding
-    console.log("Item added:", item.value)
-    console.log("Current store items:", store.items)
-    store.activeItem()
 }
 
 </script>
@@ -31,7 +34,6 @@ const addItem = () => {
 .list-choices {
     display: flex;
     justify-content: space-between;
-    /* يسار ويمين */
     align-items: center;
     margin-top: 10px;
     width: 100%;
@@ -41,4 +43,14 @@ const addItem = () => {
     display: flex;
     gap: 20px;
 }
+
+:deep(.v-field.v-field--hover) {
+  border: 1px solid #42a5f5;
+
+}
+
+:deep(.v-field.v-field--focused) {
+ border: 2px solid #42a5f5;
+}
 </style>
+

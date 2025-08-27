@@ -1,21 +1,26 @@
 <template>
-    <tr v-for="(item, index) in items" :key="item.id || index" class="border-b">
-        <td class="px-6 py-4">
-            <!-- check box -->
-           <v-checkbox 
-           :model-value="store.completed.includes(item)" 
-           @change="store.toggleState(item)"
-            />
-        </td>
-        <td class="px-6 py-4">
-            {{ item }}
-        </td>
-        <td class="px-6 py-4">
-            <button class="text-red-500 hover:text-red-700" @click="store.removeTodoByIndex(index)">
+    <tr v-for="(item, index) in items" :key="item.id || index">
+<td class="d-flex align-center">
+  <!-- check box -->
+  <v-checkbox
+    class="mr-2"
+    :model-value="store.completed.includes(item)"
+    @change="store.toggleState(item)"
+    hide-details
+  />
+  <span>{{ item }}</span>
+</td>
+
+        <td class="text-right" colspan="4">
+            <button class="btn-remove text-[#404040]  hover:text-red-700" @click="store.removeTodoByIndex(index)">
                 x
             </button>
         </td>
+
+
+
     </tr>
+
 </template>
 
 <script setup>
@@ -33,3 +38,9 @@ const props = defineProps({
 
 
 </script>
+
+<style>
+.btn-remove {
+    font-size: 20px;
+}
+</style>

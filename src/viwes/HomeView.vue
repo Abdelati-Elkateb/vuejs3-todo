@@ -1,6 +1,6 @@
 <template>
     <div class="d-flex justify-center h-screen  w-screen align-center">
-        <div class="w-50 rounded-lg" style="background-color: rgb(241 230 230 / 24%);; padding: 40px;">
+        <div class="w-50 rounded-lg">
             <HeaderTodo />
             <InputTodo />
             <TabelTodo />
