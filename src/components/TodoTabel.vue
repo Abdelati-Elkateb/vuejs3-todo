@@ -16,8 +16,8 @@
     <ShowTable :items="filteredItems" />
   </tbody>
 </v-table>
-
-  <v-btn  @click="store.clearAllTodos" color="#0d6efd" text="red" class="remove-all-btn">
+ 
+  <v-btn v-if="!store.isEmpty"  @click="store.clearAllTodos" color="#0d6efd" text="red" class="remove-all-btn">
     clear Completed
   </v-btn>
 </template>
