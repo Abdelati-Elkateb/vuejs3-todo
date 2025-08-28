@@ -16,8 +16,9 @@ export const useTodoStore = defineStore('todoId', {
     getItems: (state) => state.items,
     isEmpty: (state) => state.items.length === 0,
     totalIndex: (state) => state.items.length,
-    SelectItems: (state) => state.items.length
+    SelectItems: (state) => state.items.filter((el => el !== item))
   },
+
 
   actions: {
     addItem(newTodo) {
@@ -46,6 +47,11 @@ export const useTodoStore = defineStore('todoId', {
         this.items.splice(index, 1)
         localStorage.setItem('todoItems', JSON.stringify(this.items))
       }
+    },
+    selectItem(item) {
+
+      console.log("slice", this.items.slice(item))
+
     },
     loadTodos() {
       const savedAddItem = localStorage.getItem('todoItems')

@@ -3,9 +3,9 @@
         <td class="d-flex align-center">
             <!-- check box -->
             <v-checkbox class="mt-5" :model-value="store.completed.includes(item)" @change="store.toggleState(item)" />
+            <h1 @click="moveOn(item.id)">click here</h1>
           {{ item?.todo}}
         </td>
-        
         <td class="text-right" colspan="4">
             <button class="btn-remove text-[#404040]  hover:text-red-700" @click="store.removeTodoByIndex(index)">
                 x
@@ -26,7 +26,9 @@ const props = defineProps({
 })
 
 
-
+const moveOn = (id) => {
+    return alert(id)
+}
 
 </script>
 
