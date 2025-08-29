@@ -5,7 +5,7 @@ export const useTodoStore = defineStore('todoId', {
   state: () => {
     return {
       items: [],
-      id: 0,
+      nextId: 1,
       active: [],
       completed: [],
       itemTodo: false,
@@ -16,18 +16,18 @@ export const useTodoStore = defineStore('todoId', {
     getItems: (state) => state.items,
     isEmpty: (state) => state.items.length === 0,
     totalIndex: (state) => state.items.length,
-    SelectItems: (state) => state.items.filter((el => el !== item))
   },
 
 
   actions: {
-    addItem(newTodo) {
-      const newItem = { id: Date.now(), todo: newTodo }
+    addItem(todo) {
+      const newItem = { id: this.nextId, todo, }
       this.items.push(newItem)
       this.active.push(newItem)
       console.log('list of item:', newItem)
       console.log('list of item:', this.items)
       localStorage.setItem('todoItems', JSON.stringify(this.items))
+      this.nextId++;
     },
     toggleState(item) {
       if (this.completed.includes(item)) {

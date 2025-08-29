@@ -49,8 +49,8 @@ const filteredItems = computed(() => {
 }
 
 :deep(.todo-table) {
-  max-height: 50vh;   /* أقصى ارتفاع: نصف الشاشة */
-  overflow-y: auto;   /* يعمل scroll داخلي لو العناصر زادت */
-  display: block;     /* ضروري عشان overflow يشتغل */
+  max-height: 50vh;
+  overflow-y: auto; 
+  display: block;
 }
 </style>
