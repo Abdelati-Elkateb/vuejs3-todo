@@ -3,7 +3,6 @@
         <td class="d-flex align-center">
             <!-- check box -->
             <v-checkbox class="mt-5" :model-value="store.completed.includes(item)" @change="store.toggleState(item)" />
-            <h1 @click="moveOn(item.id)">click here</h1>
           {{ item?.todo}}
         </td>
         <td class="text-right" colspan="4">

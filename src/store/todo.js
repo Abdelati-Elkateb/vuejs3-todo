@@ -1,14 +1,13 @@
 import { defineStore } from 'pinia'
 
 export const useTodoStore = defineStore('todoId', {
-  // arrow function recommended for full type inference
+
   state: () => {
     return {
       items: [],
       nextId: 1,
       active: [],
       completed: [],
-      itemTodo: false,
     }
   },
 
@@ -16,6 +15,16 @@ export const useTodoStore = defineStore('todoId', {
     getItems: (state) => state.items,
     isEmpty: (state) => state.items.length === 0,
     totalIndex: (state) => state.items.length,
+    updateActive() {
+      if (!this.completed || this.completed.length === 0) {
+        this.active = [...this.items]
+      } else {
+
+        this.active = this.items.filter(el => !this.completed.includes(el))
+      }
+    }
+
+
   },
 
 
@@ -24,8 +33,6 @@ export const useTodoStore = defineStore('todoId', {
       const newItem = { id: this.nextId, todo, }
       this.items.push(newItem)
       this.active.push(newItem)
-      console.log('list of item:', newItem)
-      console.log('list of item:', this.items)
       localStorage.setItem('todoItems', JSON.stringify(this.items))
       this.nextId++;
     },
@@ -45,7 +52,8 @@ export const useTodoStore = defineStore('todoId', {
     removeTodoByIndex(index) {
       if (index > -1 && index < this.items.length) {
         this.items.splice(index, 1)
-        localStorage.setItem('todoItems', JSON.stringify(this.items))
+        this.active.splice(index, 1)
+        localStorage.setItem('todoItems', JSON.stringify(this.items, this.active))
       }
     },
     selectItem(item) {
@@ -63,8 +71,9 @@ export const useTodoStore = defineStore('todoId', {
 
     clearAllTodos() {
       this.items = []
+      this.completed = []
+      this.active = []
       localStorage.removeItem('todoItems')
-      itemTodo = false
 
     }
   },
