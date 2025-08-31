@@ -24,11 +24,6 @@ const props = defineProps({
 
 })
 
-
-const moveOn = (id) => {
-    return alert(id)
-}
-
 </script>
 
 <style>

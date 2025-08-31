@@ -24,7 +24,7 @@
 <script setup>
 import { useTodoStore } from '../store/todo.js'
 import { ref, computed } from 'vue'
-import ShowDate from '../components/ShowDate.vue'
+import ShowDate from './TodoItem.vue'
 
 const store = useTodoStore()
 store.loadTodos()

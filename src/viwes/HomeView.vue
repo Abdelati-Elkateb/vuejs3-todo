@@ -11,7 +11,7 @@
 
 <script setup>
 import HeaderTodo from '../components/TodoHeader.vue';
-import InputTodo from '../components/TodoInput.vue';
+import InputTodo from '../components/TodoAddItem.vue';
 import TabelTodo from '../components/TodoTabel.vue';
 
 </script>
